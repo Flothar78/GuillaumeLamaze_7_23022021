@@ -14,7 +14,7 @@
     </v-card>
     <v-card elevation="6" class="mt-12">
       <v-col class="mb-5" min-width="400">
-        <h2 class="mb-3">
+        <h2 class="mb-3 ml-7">
           Echangez des idées, des images, des expériences
         </h2>
         <v-col justify="start">
@@ -22,7 +22,7 @@
             v-for="(forum, i) in forumSocial"
             :key="i"
             :href="forum.href"
-            class="subheading mx-3"
+            class="mx-7"
             target="_blank"
           >
             {{ forum.text }}
@@ -77,7 +77,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Accueil",
 
   data: () => ({
     forumSocial: [

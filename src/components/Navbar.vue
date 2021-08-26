@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-toolbar class="d-flex justify-space-between indigo lighten-4">
-      <p class="red--text darken-4 ">Toolbar</p>
+      <p class="red--text">Toolbar</p>
       <v-img
         :src="require('../assets/icon.png')"
         class=""
@@ -13,5 +13,5 @@
 </template>
 
 <script>
-export default {};
+export default { name: "navbar" };
 </script>
