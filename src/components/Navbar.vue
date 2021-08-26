@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-toolbar class="d-flex justify-space-between">
+    <v-toolbar class="d-flex justify-space-between indigo lighten-4">
       <p class="red--text darken-4 ">Toolbar</p>
       <v-img
         :src="require('../assets/icon.png')"
