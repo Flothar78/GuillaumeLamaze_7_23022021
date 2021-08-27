@@ -7,7 +7,6 @@
     <v-card elevation="12" shaped class="d-flex justify-center mx-sm-12 mt-10">
       <v-img
         :src="require('../assets/icon-above-font.png')"
-        class=""
         max-height="200"
         max-width="400"
       />
