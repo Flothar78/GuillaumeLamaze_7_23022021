@@ -1,9 +1,12 @@
-const http = require("http");
+const express = require("express");
+const app = express();
 
-const server = http.createServer();
+const users = require("./app");
 
-server.on("request", (request, response) => {
-  console.log("requete ok fripon !");
+app.get("/users", (req, res) => {
+  res.status(200).json(users);
 });
 
-server.listen(process.env.PORT || 3000);
+app.listen(3000, () => {
+  console.log("Serveur à l écoute");
+});
