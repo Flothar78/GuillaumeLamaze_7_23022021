@@ -1,11 +1,6 @@
-const express = require("express");
-const app = express();
+const http = require("http");
 
-const users = require("./app");
-
-app.get("/users", (req, res) => {
-  res.status(200).json(users);
-});
+const app = require("./app");
 
 app.listen(3000, () => {
   console.log("Serveur à l écoute");
