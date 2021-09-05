@@ -23,15 +23,6 @@
               ></v-text-field
             ></v-form>
           </v-col>
-          <v-col cols="12" sm="6" md="4">
-            <v-form>
-              <v-text-field
-                label="Métier"
-                persistent-hint
-                v-model="user.metier"
-              ></v-text-field
-            ></v-form>
-          </v-col>
           <v-col cols="12">
             <v-form>
               <v-text-field

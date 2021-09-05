@@ -3,10 +3,10 @@ const Models = require("../models/index");
 
 exports.signup = (req, res, next) => {
   const user = Models.User.create({
-    prenom: "Guillaume",
-    nom: "Lamaze",
-    email: "rpout@g.com",
-    password: "qwerty",
+    prenom: "asx",
+    nom: "hyt",
+    email: "ffrfr@frfr.fr",
+    password: "rtu",
     isAdmin: 0,
   })
     .then(() => res.status(200).json(user))
@@ -16,10 +16,10 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   const user = Models.User.findOne({
     where: {
-      prenom: "Guillaume",
-      nom: "Lamaze",
-      email: "rpout@g.com",
-      password: "qwerty",
+      prenom: "asx",
+      nom: "hyt",
+      email: "ffrfr@frfr.fr",
+      password: "rtu",
       isAdmin: 0,
     },
   }).then((user) => {
