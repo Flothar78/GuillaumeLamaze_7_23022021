@@ -1,7 +1,17 @@
 const Models = require("../models/index");
 
-exports.getAllSauce = (req, res, next) => {
-  Models.Message.findAll()
-    .then((messages) => res.status(200).json(messages))
+exports.getAllMessage = (req, res, next) => {
+  const message = Models.Message.findAll()
+    .then(() => res.status(200).json(message))
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.newMessage = (req, res, next) => {
+  const message = Models.Message.create({
+    title: "test",
+    content: "lesgens les gens !! les gens",
+    attachment: "DataTypes.STRING",
+  })
+    .then(() => res.status(201).json(user))
     .catch((error) => res.status(400).json({ error }));
 };

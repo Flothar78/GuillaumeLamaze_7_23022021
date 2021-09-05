@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 
 const userRoutes = require("./routes/user");
+const userMessages = require("./routes/message");
 
 const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("database_development", "root", "root", {
@@ -18,5 +19,6 @@ try {
 }
 
 app.use("/users", userRoutes);
+app.use("/messages", userMessages);
 
 module.exports = app;
