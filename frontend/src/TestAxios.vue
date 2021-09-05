@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 <template
   ><div id="app">
     {{ info }}
@@ -11,7 +13,7 @@ new Vue({
     return { info: null };
   },
   mounted() {
-    axios
+    this.$axios
       .get("https://api.coindesk.com/v1/bpi/currentprice.json")
       .then((response) => (this.info = response));
   },
