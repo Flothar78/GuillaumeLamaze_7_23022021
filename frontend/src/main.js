@@ -5,7 +5,7 @@ import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import "@babel/polyfill";
 
-Vue.use(VueRouter);
+Vue.use(router);
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;
