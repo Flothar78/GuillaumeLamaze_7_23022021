@@ -9,7 +9,7 @@ exports.signup = (req, res, next) => {
     password: req.body.password,
     isAdmin: 0,
   })
-    .then((user) => res.status(201).json(user))
+    .then(() => res.status(201).json(user))
     .catch((error) => res.status(400).json({ error }));
 };
 
