@@ -1,6 +1,6 @@
 <template>
-  <v-card elevation="4" class="mt-12 mb-10 font-weight-bold"
-    ><p class="ml-3">Inscrivez-vous, ci-dessous:</p>
+  <v-card elevation="4" class="mt-12 mb-10 font-weight-bold">
+    <p class="ml-3">Inscrivez-vous (ou connectez-vous) ci-dessous:</p>
     <v-card-text>
       <v-container>
         <v-row>
@@ -53,15 +53,24 @@
         class="mb-2 mr-3"
         color="indigo lighten-2"
         text
-        @click="enregistrer"
+        @click="signup"
       >
-        Valider
+        Inscription </v-btn
+      ><v-btn
+        elevation="4"
+        class="mb-2 mr-3"
+        color="indigo lighten-2"
+        text
+        @click="login"
+      >
+        Connexion
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Formulaire",
   data() {
@@ -70,8 +79,15 @@ export default {
     };
   },
   methods: {
-    enregistrer() {
-      console.log(this.user);
+    signup() {
+      axios
+        .post("http://localhost:3000/users/signup", this.user)
+        .then((res) => console.log(res));
+    },
+    login() {
+      axios
+        .post("http://localhost:3000/users/login", this.user)
+        .then((res) => console.log(res));
     },
   },
 };
