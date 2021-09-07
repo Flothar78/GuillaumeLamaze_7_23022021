@@ -1,15 +1,11 @@
 <template>
-  <v-container>
-    <v-card class="red"><Message /></v-card>
-  </v-container>
+  <div>TEst Composant message</div>
 </template>
 
 <script>
 import axios from "axios";
-import Message from "../components/Message";
 export default {
-  name: "Forum",
-  components: { Message },
+  name: "Message",
   data() {
     return {
       user: {},
