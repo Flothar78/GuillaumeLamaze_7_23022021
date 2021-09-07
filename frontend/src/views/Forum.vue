@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="red"><Message /></v-card>
+    <v-card><Message /></v-card>
   </v-container>
 </template>
 
