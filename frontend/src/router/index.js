@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import Forum from "../views/Forum.vue";
 import Accueil from "../views/Accueil.vue";
+import Message from "../views/Message.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: "/forum",
     name: "Forum",
     component: Forum,
+  },
+  {
+    path: "/forum/message",
+    name: "Message",
+    component: Message,
   },
 ];
 

@@ -3,7 +3,7 @@
     <h3 class=" headline ml-sm-12 mt-7">
       GroupTook, rencontres, culture, travail
     </h3>
-    <h3 class="subheading ml-sm-12">Le réseau social de nos salariés.</h3>
+    <h3 class="subheading ml-sm-12">Le réseau social des salariés.</h3>
     <v-card elevation="12" shaped class="d-flex justify-center mx-sm-12 mt-10">
       <v-img
         :src="require('../assets/icon-above-font.png')"
@@ -44,15 +44,11 @@ export default {
   data: () => ({
     forumSocial: [
       {
-        text: "Le Forum",
-        href: "https://www.google.com",
+        text: "Accédez au Forum",
+        href: "http://localhost:8080/forum",
       },
       {
-        text: "Multimedia",
-        href: "https://www.google.com",
-      },
-      {
-        text: "Discutons",
+        text: "EXPERIENCE A VIRER OU MODIFIER",
         href: "https://www.google.com",
       },
     ],

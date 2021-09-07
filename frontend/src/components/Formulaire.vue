@@ -5,18 +5,9 @@
       <v-container>
         <v-row>
           <v-col cols="12" sm="6" md="4">
-            <v-form
-              ><v-text-field
-                label="Prénom*"
-                required
-                v-model="user.prenom"
-              ></v-text-field
-            ></v-form>
-          </v-col>
-          <v-col cols="12" sm="6" md="4">
             <v-form>
               <v-text-field
-                label="Nom*"
+                label="Nom d'utilisateur*"
                 persistent-hint
                 required
                 v-model="user.nom"
