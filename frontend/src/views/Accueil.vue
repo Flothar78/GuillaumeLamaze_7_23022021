@@ -44,7 +44,7 @@ export default {
   data: () => ({
     forumSocial: [
       {
-        text: "Reddit",
+        text: "Le Forum",
         href: "https://www.google.com",
       },
       {

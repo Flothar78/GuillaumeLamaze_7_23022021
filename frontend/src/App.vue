@@ -1,10 +1,14 @@
 <template>
   <v-app>
     <Navbar />
+    <v-card class="d-flex justify-center mb-2 mt-4 pb-4"
+      ><div id="nav">
+        <router-link to="/">Accueil</router-link> ///
+        <router-link to="/forum">Forum</router-link>
+      </div></v-card
+    >
 
-    <v-main>
-      <router-view />
-    </v-main>
+    <div><router-view /></div>
   </v-app>
 </template>
 
