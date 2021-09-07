@@ -9,9 +9,9 @@ exports.getAllMessage = (req, res, next) => {
 exports.newMessage = (req, res, next) => {
   const message = Models.Message.create({
     UserId: 3,
-    title: "2e test",
-    content: "Allez !! ",
-    attachment: "groumpntch",
+    title: req.body.title,
+    content: req.body.content,
+    attachment: req.body.attachment,
   })
     .then((user) => res.status(201).json(user))
     .catch((error) => res.status(400).json({ error }));

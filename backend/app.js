@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const cors = require("cors");
 
 const userRoutes = require("./routes/user");
 const userMessages = require("./routes/message");
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRoutes);
 app.use("/messages", userMessages);
