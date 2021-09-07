@@ -73,12 +73,14 @@ export default {
     signup() {
       axios
         .post("http://localhost:3000/users/signup", this.user)
-        .then((res) => console.log(res));
+        .then((res) => console.log(res))
+        .catch((err) => err.status(401).json(err));
     },
     login() {
       axios
         .post("http://localhost:3000/users/login", this.user)
-        .then((res) => console.log(res));
+        .then((res) => console.log(res))
+        .catch((err) => err.status(400).json(err));
     },
   },
 };

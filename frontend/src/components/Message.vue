@@ -19,6 +19,41 @@
         <v-spacer></v-spacer>
       </v-card>
     </div>
+    <v-card>
+      <div>Postez un nouveau message</div>
+      <v-form>
+        <v-text-field
+          label="A quel sujet ?*"
+          persistent-hint
+          required
+          v-model="messages.title"
+        ></v-text-field
+      ></v-form>
+      <v-form>
+        <v-text-field
+          label="Racontez-nous ce qu'il vous plaira*"
+          persistent-hint
+          required
+          v-model="messages.content"
+        ></v-text-field
+      ></v-form>
+      <v-form>
+        <v-text-field
+          label="Mettez-une photo, un dessin, si vous le souhaitez."
+          persistent-hint
+          v-model="messages.attachment"
+        ></v-text-field
+      ></v-form>
+      <button
+        elevation="4"
+        class="mb-2 mr-3"
+        color="indigo lighten-2"
+        text
+        @click="newMessage()"
+      >
+        Envoyer
+      </button>
+    </v-card>
   </v-container>
 </template>
 
@@ -31,12 +66,21 @@ export default {
       messages: [],
     };
   },
+
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages")
       .then((this.messages = (res) => res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => err.status(400).json(err));
   },
-  async newMessage() {},
+
+  methods: {
+    newMessage() {
+      axios
+        .post("http://localhost:3000/messages", this.messages)
+        .then((res) => console.log(res))
+        .catch((err) => err.status(401).json(err));
+    },
+  },
 };
 </script>
