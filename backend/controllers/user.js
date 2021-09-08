@@ -40,11 +40,9 @@ exports.login = (req, res, next) => {
             }),
           });
         })
-        .catch((error) =>
-          res.status(501).json({ error: "1er catch côté serveur" })
-        );
+        .catch((error) => res.status(501).json({ error }));
     })
-    .catch((error) => res.status(500).json({ error: "catch final" }));
+    .catch((error) => res.status(500).json({ error }));
 };
 
 exports.getAll = (req, res, next) => {
