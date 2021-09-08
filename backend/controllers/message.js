@@ -13,6 +13,6 @@ exports.newMessage = (req, res, next) => {
     content: req.body.content,
     attachment: req.body.attachment,
   })
-    .then((user) => res.status(201).json(user))
-    .catch((error) => res.status(400).json({ error }));
+    .then((message) => res.status(200).json(message))
+    .catch((err) => res.status(400).json(err));
 };

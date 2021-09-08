@@ -26,7 +26,7 @@
           label="A quel sujet ?*"
           persistent-hint
           required
-          v-model="messages.title"
+          v-model="message.title"
         ></v-text-field
       ></v-form>
       <v-form>
@@ -34,14 +34,14 @@
           label="Racontez-nous ce qu'il vous plaira*"
           persistent-hint
           required
-          v-model="messages.content"
+          v-model="message.content"
         ></v-text-field
       ></v-form>
       <v-form>
         <v-text-field
           label="Mettez-une photo, un dessin, si vous le souhaitez."
           persistent-hint
-          v-model="messages.attachment"
+          v-model="message.attachment"
         ></v-text-field
       ></v-form>
       <button
@@ -64,6 +64,7 @@ export default {
   data() {
     return {
       messages: [],
+      message: {},
     };
   },
 
@@ -76,10 +77,10 @@ export default {
 
   methods: {
     newMessage() {
-      axios
-        .post("http://localhost:3000/messages", this.messages)
-        .then((res) => console.log(res))
-        .catch((err) => err.status(401).json(err));
+      axios.post("http://localhost:3000/messages", this.message).then((res) => {
+        this.messages.push(res.data);
+        this.message = {};
+      });
     },
   },
 };
