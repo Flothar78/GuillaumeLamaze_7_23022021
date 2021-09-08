@@ -5,7 +5,7 @@
     </div>
     <div
       class="d-flex flex-column-reverse"
-      v-for="(message, i) in messages"
+      v-for="(message, i) in messages.slice().reverse()"
       :key="i"
     >
       <v-card elevation="4" class="mb-4 mx-2 pl-4 py-2 "
@@ -19,7 +19,7 @@
         <v-spacer></v-spacer>
       </v-card>
     </div>
-    <v-card>
+    <v-card class="px-4">
       <div>Postez un nouveau message</div>
       <v-form>
         <v-text-field
@@ -39,14 +39,16 @@
       ></v-form>
       <v-form>
         <v-text-field
-          label="Mettez-une photo, un dessin, si vous le souhaitez."
+          label="Mettez-une photo, un dessin, si vous le souhaitez"
           persistent-hint
           v-model="message.attachment"
         ></v-text-field
       ></v-form>
+      <small>*Merci de remplir au moins les champs avec astérique </small>
+      <v-spacer></v-spacer>
       <button
         elevation="4"
-        class="mb-2 mr-3"
+        class="mb-2 mr-3 my-6 ml-6 sharped indigo lighten-4"
         color="indigo lighten-2"
         text
         @click="newMessage()"

@@ -26,7 +26,6 @@ exports.login = (req, res, next) => {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
       }
       //////comparaison entre mot de passe entré et mot de passe créé/hashé lors de signup //////
-      console.log(user);
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
