@@ -48,8 +48,7 @@
       <v-spacer></v-spacer>
       <button
         elevation="4"
-        class="mb-2 mr-3 my-6 ml-6 sharped indigo lighten-4"
-        color="indigo lighten-2"
+        class="mb-2 mr-3 mt-6 mb-4 ml-6 px-4 indigo lighten-4"
         text
         @click="newMessage()"
       >

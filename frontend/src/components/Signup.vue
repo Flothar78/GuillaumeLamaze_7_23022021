@@ -1,7 +1,13 @@
 <template>
-  <v-card elevation="4" class="mt-12 mb-10 font-weight-bold">
-    <p class="ml-3">Inscrivez-vous (ou connectez-vous) ci-dessous:</p>
-    <v-card-text>
+  <v-card elevation="8" class="py-6 px-6 font-weight-bold">
+    <v-card elevation="4" class="px-2 mt-4">
+      <div class="ml-3">
+        <div class="pt-4">
+          <small>Si vous n'êtes pas encore inscrit,</small>
+        </div>
+        <v-spacer></v-spacer>
+        <p class="ml-3 mt-6">Suivez les infos ci-dessous:</p>
+      </div>
       <v-container>
         <v-row>
           <v-col cols="12" sm="6" md="4">
@@ -34,36 +40,26 @@
             ></v-form>
           </v-col>
         </v-row>
+        <small>*Informations essentielles pour nous </small>
       </v-container>
-      <small>*Informations essentielles pour nous </small>
-    </v-card-text>
-    <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn
         elevation="4"
-        class="mb-2 mr-3"
+        class="mb-5 mx-3"
         color="indigo lighten-2"
         text
         @click="signup"
       >
-        Inscription </v-btn
-      ><v-btn
-        elevation="4"
-        class="mb-2 mr-3"
-        color="indigo lighten-2"
-        text
-        @click="login"
-      >
-        Connexion
+        Inscription
       </v-btn>
-    </v-card-actions>
+    </v-card>
   </v-card>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "Formulaire",
+  name: "Signup",
   data() {
     return {
       user: {},
@@ -75,12 +71,6 @@ export default {
         .post("http://localhost:3000/users/signup", this.user)
         .then((res) => console.log(res))
         .catch((err) => err.status(401).json(err));
-    },
-    login() {
-      axios
-        .post("http://localhost:3000/users/login", this.user)
-        .then((res) => console.log(res))
-        .catch((err) => err.status(400).json(err));
     },
   },
 };
