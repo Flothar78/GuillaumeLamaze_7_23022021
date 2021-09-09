@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="8" class="py-6 px-6 font-weight-bold">
+  <v-card elevation="8" class="py-6 px-8 font-weight-bold">
     <v-card elevation="4" class="px-2 mt-4">
       <div class="pt-4">
         <small>Si vous êtes déja inscrit,</small>
@@ -36,6 +36,12 @@
             ></v-text-field
           ></v-form>
         </v-col>
+        <v-card elevation="2" class="ml-6 mb-4 px-2">
+          <small
+            >*Informations indispensables<br />**Mail et pseudos doivent être
+            uniques</small
+          >
+        </v-card>
       </v-row>
 
       <v-btn

@@ -40,7 +40,7 @@
             ></v-form>
           </v-col>
         </v-row>
-        <small>*Informations essentielles pour nous </small>
+        <small>*Informations indispensables</small>
       </v-container>
       <v-spacer></v-spacer>
       <v-btn
