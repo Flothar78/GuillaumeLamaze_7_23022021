@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "Login",
   data() {
@@ -67,18 +67,16 @@ export default {
       user: {},
     };
   },
-  computed: {
-    ...mapGetters(["token"]),
-  },
+  computed: { ...mapGetters(["token"]) },
   methods: {
     login() {
       axios
-        .post("http://localhost:3000/users/login", this.user)
-        .then((response) => {
-          this.$store.commit("LOGIN_SUCCESS", response.token);
+        .post("http://localhost:3000/users/login", this.user, {
+          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
         })
-        .then((res) => console.log(res))
-        .catch((err) => err.status(400).json(err));
+        .then((response) => {
+          console.log(response.data.token);
+        });
     },
   },
 };

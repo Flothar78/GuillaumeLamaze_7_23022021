@@ -7,16 +7,13 @@ export default new Vuex.Store({
   state: {
     token: null,
   },
+
   mutations: {
     LOGIN_SUCCESS(state, response) {
       state.token = response.token;
     },
   },
-  getters: {
-    token: (state) => {
-      return state.token((token) => token);
-    },
-  },
+  getters: { token: (state) => state.token },
   actions: {},
   modules: {},
 });
