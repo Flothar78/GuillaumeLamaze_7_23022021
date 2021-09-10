@@ -8,7 +8,7 @@ exports.getAllMessage = (req, res, next) => {
 
 exports.newMessage = (req, res, next) => {
   const message = Models.Message.create({
-    UserId: 3,
+    UserId: 29,
     title: req.body.title,
     content: req.body.content,
     attachment: req.body.attachment,

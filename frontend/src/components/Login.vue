@@ -59,7 +59,7 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
+
 export default {
   name: "Login",
   data() {
@@ -67,15 +67,13 @@ export default {
       user: {},
     };
   },
-  computed: { ...mapGetters(["token"]) },
+
   methods: {
     login() {
       axios
-        .post("http://localhost:3000/users/login", this.user, {
-          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
-        })
+        .post("http://localhost:3000/users/login", this.user)
         .then((response) => {
-          console.log(response.data.token);
+          this.$store.commit("LOGIN_SUCCESS", response.data);
         });
     },
   },

@@ -45,6 +45,12 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+exports.delete = (req, res, next) => {
+  Models.User.deleteOne({ id: res.locals.userId })
+    .then(() => res.status(200).json({ message: "Compte supprimé " }))
+    .catch((error) => res.status(400).json({ error }));
+};
+
 exports.getAll = (req, res, next) => {
   Models.User.findAll()
     .then((users) => {

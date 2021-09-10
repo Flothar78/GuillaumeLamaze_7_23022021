@@ -71,17 +71,23 @@ export default {
 
   async created() {
     this.messages = await axios
-      .get("http://localhost:3000/messages")
+      .get("http://localhost:3000/messages", {
+        headers: { Authorization: "Bearer" + " " + this.$store.state.token },
+      })
       .then((this.messages = (res) => res.data))
       .catch((err) => err.status(400).json(err));
   },
 
   methods: {
     newMessage() {
-      axios.post("http://localhost:3000/messages", this.message).then((res) => {
-        this.messages.push(res.data);
-        this.message = {};
-      });
+      axios
+        .post("http://localhost:3000/messages", this.message, {
+          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
+        })
+        .then((res) => {
+          this.messages.push(res.data);
+          this.message = {};
+        });
     },
   },
 };
