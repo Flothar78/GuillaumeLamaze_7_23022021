@@ -74,7 +74,7 @@ export default {
         .then((response) => {
           this.$store.commit("LOGIN_SUCCESS", response.data);
         })
-        .then(() => this.$router.push(this.$route.query.redirect || "/Forum"));
+        .then(() => this.$router.push("/Forum"));
     },
   },
 };
