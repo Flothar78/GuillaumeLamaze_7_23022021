@@ -19,7 +19,6 @@ export default {
       user: {},
     };
   },
-  computed: { ...mapGetters(["token"]) },
   methods: {
     login() {
       axios

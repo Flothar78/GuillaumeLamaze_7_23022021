@@ -6,6 +6,6 @@ const auth = require("../middleware/auth");
 router.get("/", userControllers.getAll);
 router.post("/signup", userControllers.signup);
 router.post("/login", userControllers.login);
-router.delete("/delete", auth, userControllers.delete);
+router.delete("/id", userControllers.deleteAccount);
 
 module.exports = router;
