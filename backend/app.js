@@ -36,6 +36,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
+
 app.use("/users", userRoutes);
 app.use("/messages", auth, userMessages);
 

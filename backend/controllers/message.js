@@ -1,4 +1,5 @@
 const Models = require("../models/index");
+const user = require("../models/user");
 
 exports.getAllMessage = (req, res, next) => {
   const message = Models.Message.findAll()
@@ -8,11 +9,11 @@ exports.getAllMessage = (req, res, next) => {
 
 exports.newMessage = (req, res, next) => {
   const message = Models.Message.create({
-    UserId: 29,
+    UserId: res.locals.userId,
     title: req.body.title,
     content: req.body.content,
     attachment: req.body.attachment,
   })
-    .then((message) => res.status(200).json(message))
+    .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));
 };
