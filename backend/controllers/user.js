@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Models = require("../models/index");
+const user = require("../models/user");
 
 exports.signup = (req, res, next) => {
   bcrypt
@@ -46,9 +47,9 @@ exports.login = (req, res, next) => {
 };
 
 exports.deleteAccount = (req, res, next) => {
-  Models.User.findOne({ where: { id: 38 } })
-    .then(Models.Message.destroy({ where: { UserId: 38 } }))
-    .then(Models.User.destroy({ where: { id: 38 } }))
+  console.log(req.params.id);
+  Models.Message.destroy({ where: { UserId: req.params.id } })
+    .then(Models.User.destroy({ where: { id: req.params.id } }))
     .then(() => res.status(200).json({ message: "Compte supprimé " }))
     .catch((error) => res.status(407).json({ error }));
 };

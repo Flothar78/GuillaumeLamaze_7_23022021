@@ -73,7 +73,8 @@ export default {
         .post("http://localhost:3000/users/login", this.user)
         .then((response) => {
           this.$store.commit("LOGIN_SUCCESS", response.data);
-        });
+        })
+        .then(() => this.$router.push(this.$route.query.redirect || "/Forum"));
     },
   },
 };
