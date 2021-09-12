@@ -71,7 +71,7 @@ export default {
         .post("http://localhost:3000/users/signup", this.user)
         .then(() => this.$router.push("/Forum"))
         .then((res) => console.log(res))
-        .catch((err) => err.status(401).json(err));
+        .catch((error) => error.status(401).json(error));
     },
   },
 };
