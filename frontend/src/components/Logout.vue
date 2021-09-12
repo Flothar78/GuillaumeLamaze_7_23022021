@@ -17,8 +17,7 @@ export default {
   methods: {
     logout() {
       this.$store.commit("LOGOUT_SUCCESS", this.$store.token);
-      console.log(this.$store.state);
-      this.$router.push("Accueil");
+      this.$router.push("/");
       this.$alert("Vous avez bien été déconnecté de GroupTook.");
     },
   },

@@ -75,7 +75,6 @@ export default {
           this.$store.commit("LOGIN_SUCCESS", response.data);
         })
         .then(() => this.$router.push("/Forum"));
-      console.log(this.$store.state);
     },
   },
 };
