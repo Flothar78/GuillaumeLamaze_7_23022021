@@ -1,33 +1,25 @@
 <template
   ><v-btn
     elevation="4"
-    class="mb-8 mt-6 mx-3"
+    class="mb-8 mt-12 mx-3"
     color="indigo lighten-2"
     text
-    @click="login"
+    @click="logout"
   >
-    Déconnexion
+    Vous déconnecter
   </v-btn>
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  name: "Login",
-  data() {
-    return {
-      user: {},
-    };
-  },
+  name: "Logout",
+
   methods: {
-    login() {
-      axios
-        .post("http://localhost:3000/users/login", this.user, {
-          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
-        })
-        .then((response) => {
-          console.log(response.data.token);
-        });
+    logout() {
+      this.$store.commit("LOGOUT_SUCCESS", this.$store.token);
+      console.log(this.$store.state);
+      this.$router.push("Accueil");
+      this.$alert("Vous avez bien été déconnecté de GroupTook.");
     },
   },
 };

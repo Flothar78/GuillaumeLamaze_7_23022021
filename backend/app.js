@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const auth = require("./middleware/auth");
+const multer = require("./middleware/multer");
 const userRoutes = require("./routes/user");
 const userMessages = require("./routes/message");
 
@@ -38,10 +39,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.locals.user = req.user;
+
   next();
 });
 
 app.use("/users", userRoutes);
-app.use("/messages", auth, userMessages);
+app.use("/messages", auth, multer, userMessages);
 
 module.exports = app;
