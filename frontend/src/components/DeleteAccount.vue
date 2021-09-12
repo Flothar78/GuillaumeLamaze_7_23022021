@@ -25,8 +25,8 @@ export default {
         .delete("http://localhost:3000/users/:id/delete", this.user, {
           headers: { Authorization: "Bearer" + " " + this.$store.state.token },
         })
-        .then(() => {
-          console.log(this.user);
+        .then((res) => {
+          console.log(res);
         });
     },
   },

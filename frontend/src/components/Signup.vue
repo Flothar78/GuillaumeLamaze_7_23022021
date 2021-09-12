@@ -69,7 +69,9 @@ export default {
     signup() {
       axios
         .post("http://localhost:3000/users/signup", this.user)
-        .then(() => this.$router.push("/Forum"))
+        .then(
+          this.$alert("Votre compte a bien été créé, merci de vous connecter.")
+        )
         .then((res) => console.log(res))
         .catch((error) => error.status(401).json(error));
     },
