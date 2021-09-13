@@ -16,7 +16,7 @@
         <div>{{ message.content }}</div>
         <br />
         <v-card>{{ message.attachment }}</v-card>
-        <Comment @comment="onNewComment($event)" />
+        <Comment @comment="newComment($event)" />
 
         <v-spacer></v-spacer>
       </v-card>

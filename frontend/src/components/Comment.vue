@@ -1,7 +1,10 @@
 <template>
   <container>
-    <textarea v-model="comment"></textarea>
-    <button @click="sendComment">Commentaire</button>
+    <textarea placeholder="Un commentaire ?" v-model="comment"></textarea>
+    <v-spacer></v-spacer>
+    <button class="px-2 indigo lighten-4" @click="sendComment">
+      Envoyer votre commentaire
+    </button>
   </container>
 </template>
 
