@@ -10,7 +10,7 @@ exports.newComment = (req, res, next) => {
   const comment = Models.Comment.create({
     UserId: 33,
     MessageId: 37,
-    content: "test dur",
+    content: req.body.comment,
   })
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));
