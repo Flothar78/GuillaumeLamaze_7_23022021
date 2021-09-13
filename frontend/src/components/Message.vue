@@ -16,6 +16,8 @@
         <div>{{ message.content }}</div>
         <br />
         <v-card>{{ message.attachment }}</v-card>
+        <Comment @comment="onNewComment($event)" />
+
         <v-spacer></v-spacer>
       </v-card>
     </div>
@@ -60,15 +62,16 @@
 
 <script>
 import axios from "axios";
+import Comment from "./Comment";
 export default {
   name: "Message",
+  components: { Comment },
   data() {
     return {
       messages: [],
       message: {},
     };
   },
-
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages", {

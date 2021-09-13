@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-card><Message /></v-card>
+
     <div class="d-flex">
       <div><Logout /></div>
       <div><DeleteAccount /></div>
