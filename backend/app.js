@@ -4,8 +4,10 @@ const path = require("path");
 const cors = require("cors");
 const auth = require("./middleware/auth");
 const multer = require("./middleware/multer");
+
 const userRoutes = require("./routes/user");
-const userMessages = require("./routes/message");
+const messageRoutes = require("./routes/message");
+const commentRoutes = require("./routes/comment");
 
 const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("database_development", "root", "root", {
@@ -39,11 +41,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.locals.user = req.user;
-
   next();
 });
 
 app.use("/users", userRoutes);
-app.use("/messages", auth, multer, userMessages);
+app.use("/messages", auth, multer, messageRoutes);
+app.use("/comments", commentRoutes);
 
 module.exports = app;
