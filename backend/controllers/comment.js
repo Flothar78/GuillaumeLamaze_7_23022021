@@ -8,9 +8,9 @@ exports.getAllComment = (req, res, next) => {
 
 exports.newComment = (req, res, next) => {
   const comment = Models.Comment.create({
-    UserId: 33,
-    MessageId: 37,
-    content: req.body.comment,
+    UserId: res.locals.userId,
+    MessageId: req.body.messageId,
+    content: req.body.content,
   })
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));

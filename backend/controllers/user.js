@@ -47,11 +47,9 @@ exports.login = (req, res, next) => {
 };
 
 exports.deleteAccount = (req, res, next) => {
-  console.log(req.params.id);
-  Models.Message.destroy({ where: { UserId: 59 } })
-    .then(Models.User.destroy({ where: { id: 59 } }))
-    .then(() => res.status(200).json({ message: "Compte supprimé " }))
-    .catch((error) => res.status(407).json({ error }));
+  Models.User.destroy({ where: { id: res.locals.userId } }).then(() =>
+    res.status(200).json({ message: "Compte supprimé " })
+  );
 };
 
 exports.getAll = (req, res, next) => {
