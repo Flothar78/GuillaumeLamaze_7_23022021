@@ -39,7 +39,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-      <v-form><input type="file" @change="c"/></v-form>
+
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -62,7 +62,6 @@ export default {
   components: { Comment },
   data() {
     return {
-      selectedFile: null,
       messages: [],
       message: {},
     };
@@ -77,12 +76,7 @@ export default {
   },
 
   methods: {
-    onSelectedFile(event) {
-      this.selectedFile = event.target.files[0];
-    },
     newMessage() {
-      const fd = new FormData();
-      fd.append("image", this.selectedFile);
       axios
         .post("http://localhost:3000/messages", this.message, {
           headers: { Authorization: "Bearer" + " " + this.$store.state.token },

@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     deleteAccount() {
-      if (confirm("Etes-vous de vouloir supprimer votre compte ?")) {
+      if (confirm("Etes-vous certain de vouloir supprimer votre compte ?")) {
         axios
           .delete("http://localhost:3000/users", {
             headers: {

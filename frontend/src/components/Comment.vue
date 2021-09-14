@@ -1,7 +1,12 @@
 <template>
   <container name:>
+    <div id="comments">Commentaires affichage  
+     <div v-for="comment in comments" :key="comment">
+     {{ comment }}
+    </div>
+    </div>
     <div class="d-flex">
-      <textarea v-bind:style="styleResize" placeholder="Un commentaire ?" v-model="comment"></textarea>
+      <textarea v-bind:style="styleResize" placeholder="Ajouter un commentaire ?" v-model="comment"></textarea>
       <v-spacer></v-spacer>
       <button class="px-2 indigo lighten-4 mr-4" @click="sendComment">
         Envoyer votre commentaire
@@ -17,6 +22,7 @@ export default {
   props:["messageId"],
   data() {
     return {
+    comments: [],
       comment: "",
       styleResize: {
         resize: "both"
@@ -24,13 +30,19 @@ export default {
     };
   },
   emits: ["comment"],
+
+  async created() {
+    this.comments = await axios.get("http://localhost:3000/comments", 
+    )},
+
   methods: {
     sendComment() {
-   //   this.$emit("comment", this.comment);
+   this.$emit("comment", this.comment);
       axios.post("http://localhost:3000/comments", {content: this.comment, messageId:this.messageId}, {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
-      });
+      }).then((comments) => {console.log(comments)});
     },
+    
   },
 };
 </script>
