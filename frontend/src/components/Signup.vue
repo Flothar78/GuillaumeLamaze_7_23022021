@@ -72,7 +72,6 @@ export default {
         .then(
           this.$alert("Votre compte a bien été créé, merci de vous connecter.")
         )
-        .then((res) => console.log(res))
         .catch((error) => error.status(401).json(error));
     },
   },

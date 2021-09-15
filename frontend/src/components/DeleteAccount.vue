@@ -22,15 +22,11 @@ export default {
   methods: {
     deleteAccount() {
       if (confirm("Etes-vous certain de vouloir supprimer votre compte ?")) {
-        axios
-          .delete("http://localhost:3000/users", {
-            headers: {
-              Authorization: "Bearer" + " " + this.$store.state.token,
-            },
-          })
-          .then((res) => {
-            console.log(res);
-          });
+        axios.delete("http://localhost:3000/users", {
+          headers: {
+            Authorization: "Bearer" + " " + this.$store.state.token,
+          },
+        });
       }
     },
   },

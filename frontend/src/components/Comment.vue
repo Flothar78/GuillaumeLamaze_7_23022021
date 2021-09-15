@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="comments">
-      <div v-for="comment in comments" :key="comment">
-        {{ comment.content }}
+    <div class="commentsRender">
+      <div v-for="comment in comments" :key="comment.MessageId">
+        <span>{{ comment.content }} {{ comment.MessageId }}</span>
       </div>
     </div>
     <div class="d-flex">
@@ -44,19 +44,15 @@ export default {
   methods: {
     sendComment() {
       this.$emit("comment", this.comment);
-      axios
-        .post(
-          "http://localhost:3000/comments",
-          { content: this.comment, messageId: this.messageId },
-          {
-            headers: {
-              Authorization: "Bearer" + " " + this.$store.state.token,
-            },
-          }
-        )
-        .then((comments) => {
-          console.log(comments);
-        });
+      axios.post(
+        "http://localhost:3000/comments",
+        { content: this.comment, messageId: this.messageId },
+        {
+          headers: {
+            Authorization: "Bearer" + " " + this.$store.state.token,
+          },
+        }
+      );
     },
   },
 };

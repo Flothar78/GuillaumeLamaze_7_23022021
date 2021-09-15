@@ -16,8 +16,9 @@
         <div>{{ message.content }}</div>
         <br />
         <v-card>{{ message.attachment }}</v-card>
-        <Comment @comment="newComment($event)" v-bind:messageId="message.id" />
-
+        <v-card
+          ><Comment @comment="newComment($event)" v-bind:messageId="message.id"
+        /></v-card>
         <v-spacer></v-spacer>
       </v-card>
     </div>
@@ -39,7 +40,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-
+      <v-form><input type="file" @change="onChangeSelected" /> </v-form>
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -62,6 +63,7 @@ export default {
   components: { Comment },
   data() {
     return {
+      selectedFile: null,
       messages: [],
       message: {},
     };
@@ -76,14 +78,25 @@ export default {
   },
 
   methods: {
+    onSelectedFile(event) {
+      this.selectedFile = event.target.files[0];
+    },
     newMessage() {
+      const UserId = 33;
+      const fd = new FormData();
+      fd.append("image", this.selectedFile);
+      fd.append("UserId", UserId);
       axios
-        .post("http://localhost:3000/messages", this.message, {
-          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
+        .post("http://localhost:3000/messages", this.message, fd, {
+          headers: {
+            Authorization: "Bearer" + " " + this.$store.state.token,
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then((res) => {
           this.messages.push(res.data);
           this.message = {};
+          console.log(res);
         });
     },
   },
