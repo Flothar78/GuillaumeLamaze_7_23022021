@@ -2,7 +2,7 @@ const Models = require("../models/index");
 const user = require("../models/user");
 
 exports.getAllMessage = (req, res, next) => {
-  const message = Models.Message.findAll()
+  const message = Models.Message.findAll({ order: [["id", "DESC"]] })
     .then((message) => res.status(200).json(message))
     .catch((error) => res.status(400).json({ error }));
 };

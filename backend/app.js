@@ -44,6 +44,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/users", userRoutes);
 app.use("/messages", auth, multer, messageRoutes);
 app.use("/comments", commentRoutes);

@@ -2,7 +2,7 @@
   <div>
     <div class="commentsRender">
       <div v-for="comment in comments" :key="comment.MessageId">
-        <span>{{ comment.content }} {{ comment.MessageId }}</span>
+        <span>{{ comment.content }}</span>
       </div>
     </div>
     <div class="d-flex">
@@ -37,22 +37,23 @@ export default {
 
   async created() {
     this.comments = await axios
-      .get("http://localhost:3000/comments")
+      .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
   },
 
   methods: {
     sendComment() {
-      this.$emit("comment", this.comment);
-      axios.post(
-        "http://localhost:3000/comments",
-        { content: this.comment, messageId: this.messageId },
-        {
-          headers: {
-            Authorization: "Bearer" + " " + this.$store.state.token,
-          },
-        }
-      );
+      axios
+        .post(
+          "http://localhost:3000/comments",
+          { content: this.comment, messageId: this.messageId },
+          {
+            headers: {
+              Authorization: "Bearer" + " " + this.$store.state.token,
+            },
+          }
+        )
+        .then((comment) => this.comments.unshift(comment.data));
     },
   },
 };

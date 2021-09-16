@@ -5,7 +5,7 @@
     </div>
     <div
       class="d-flex flex-column-reverse"
-      v-for="(message, i) in messages.slice().reverse()"
+      v-for="(message, i) in messages"
       :key="i"
     >
       <v-card elevation="4" class="mb-4 mx-2 pl-4 py-2 "
@@ -16,9 +16,7 @@
         <div>{{ message.content }}</div>
         <br />
         <v-card>{{ message.attachment }}</v-card>
-        <v-card
-          ><Comment @comment="newComment($event)" v-bind:messageId="message.id"
-        /></v-card>
+        <v-card><Comment v-bind:messageId="message.id"/></v-card>
         <v-spacer></v-spacer>
       </v-card>
     </div>
@@ -40,7 +38,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-      <v-form><input type="file" @change="onChangeSelected" /> </v-form>
+      <v-form><input type="file" @change="onSelectedFile" /> </v-form>
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -82,13 +80,14 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     newMessage() {
-      const fd = new FormData();
-      fd.append("image", this.selectedFile);
-      fd.append("message", this.message);
-      fd.append("userId", this.$store.state.userId);
+      const data = {
+        file: this.selectedFile,
+        data: this.message,
+        userId: this.$store.state.userId,
+      };
 
       axios
-        .post("http://localhost:3000/messages", fd, {
+        .post("http://localhost:3000/messages", data, {
           headers: {
             Authorization: "Bearer" + " " + this.$store.state.token,
           },
