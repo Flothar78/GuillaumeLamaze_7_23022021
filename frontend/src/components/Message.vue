@@ -26,7 +26,7 @@
       <div>Postez un nouveau message</div>
       <v-form>
         <v-text-field
-          label="A quel sujet ?*"
+          placeholder="A quel sujet ?*"
           persistent-hint
           required
           v-model="message.title"
@@ -34,7 +34,7 @@
       ></v-form>
       <v-form>
         <v-text-field
-          label="Racontez-nous ce qu'il vous plaira*"
+          placeholder="Racontez-nous ce qu'il vous plaira*"
           persistent-hint
           required
           v-model="message.content"
@@ -82,15 +82,15 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     newMessage() {
-      const UserId = 33;
       const fd = new FormData();
       fd.append("image", this.selectedFile);
-      fd.append("UserId", UserId);
+      fd.append("message", this.message);
+      fd.append("userId", this.$store.state.userId);
+
       axios
-        .post("http://localhost:3000/messages", this.message, fd, {
+        .post("http://localhost:3000/messages", fd, {
           headers: {
             Authorization: "Bearer" + " " + this.$store.state.token,
-            "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
