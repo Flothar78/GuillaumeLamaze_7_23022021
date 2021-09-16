@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="commentsRender">
-      <div v-for="comment in comments" :key="comment.MessageId">
+      <div v-for="comment in comments" :key="comment.content">
         <span>{{ comment.content }}</span>
       </div>
     </div>
@@ -34,13 +34,11 @@ export default {
     };
   },
   emits: ["comment"],
-
   async created() {
     this.comments = await axios
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
   },
-
   methods: {
     sendComment() {
       axios
@@ -53,7 +51,8 @@ export default {
             },
           }
         )
-        .then((comment) => this.comments.unshift(comment.data));
+        .then((comment) => this.comments.unshift(comment.data))
+        .catch((error) => error.status(401).json(error));
     },
   },
 };

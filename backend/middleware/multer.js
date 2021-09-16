@@ -1,4 +1,4 @@
-////// Appel du module multer pour traitement des images de sauce ////////////////////////////////////////////////////////////
+////// Appel du module multer pour traitement des images ////////////////////////////////////////////////////////////
 const multer = require("multer");
 
 ////// Désignation des formats d'image concernés /////////////////////////////////////////////////////////////////////////////
@@ -22,4 +22,4 @@ const storage = multer.diskStorage({
   },
 });
 
-module.exports = multer({ storage: storage }).single("image");
+module.exports = multer({ storage: storage }).single("onSelectedFile");

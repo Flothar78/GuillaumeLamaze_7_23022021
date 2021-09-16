@@ -72,9 +72,8 @@ export default {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
       .then((this.messages = (res) => res.data))
-      .catch((err) => err.status(400).json(err));
+      .catch((error) => error.status(401).json(error));
   },
-
   methods: {
     onSelectedFile(event) {
       this.selectedFile = event.target.files[0];
@@ -85,7 +84,6 @@ export default {
         data: this.message,
         userId: this.$store.state.userId,
       };
-
       axios
         .post("http://localhost:3000/messages", data, {
           headers: {
@@ -96,7 +94,8 @@ export default {
           this.messages.push(res.data);
           this.message = {};
           console.log(res);
-        });
+        })
+        .catch((error) => error.status(401).json(error));
     },
   },
 };

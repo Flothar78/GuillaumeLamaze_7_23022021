@@ -18,7 +18,9 @@ export default {
     logout() {
       this.$store.commit("LOGOUT_SUCCESS", this.$store.token);
       this.$router.push("/");
-      this.$alert("Vous avez bien été déconnecté de GroupTook.");
+      this.$alert(
+        "Vous avez bien été déconnecté de GroupTook."
+      ).catch((error) => error.status(401).json(error));
     },
   },
 };
