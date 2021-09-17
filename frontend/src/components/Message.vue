@@ -15,7 +15,9 @@
         <br />
         <div>{{ message.content }}</div>
         <br />
-        <v-card>{{ message.attachment }}</v-card>
+        <div class="card-img-top w-75 mx-auto">
+          <img :src="message.attachment" alt="image" />
+        </div>
         <v-card><Comment v-bind:messageId="message.id"/></v-card>
         <v-spacer></v-spacer>
       </v-card>
@@ -38,7 +40,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-      <v-form><input type="file" @change="onSelected"/></v-form>
+      <v-form><input type="file" v-on:input="onSelected"/></v-form>
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -61,9 +63,8 @@ export default {
   components: { Comment },
   data() {
     return {
-      file: null,
+      message: { file: null, title: null, content: null },
       messages: [],
-      message: {},
     };
   },
 
@@ -72,20 +73,25 @@ export default {
       .get("http://localhost:3000/messages", {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
-      .then((this.messages = (res) => res.data));
+      .then((this.messages = (res) => res.data))
+      .catch((error) => {
+        error.status(401).json(error);
+      });
   },
 
   methods: {
     onSelectedFile(event) {
-      this.file = event.target.files[0];
+      this.message.file = event.target.files[0];
     },
     newMessage() {
       const fd = new FormData();
-      fd.append("image", this.file);
+      fd.append("image", this.message.file);
       fd.append("message", this.message);
       axios
         .post("http://localhost:3000/messages", fd, {
-          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
+          headers: {
+            Authorization: "Bearer" + " " + this.$store.state.token,
+          },
         })
         .then((res) => {
           this.messages.push(res.data);

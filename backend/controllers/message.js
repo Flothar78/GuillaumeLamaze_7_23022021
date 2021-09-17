@@ -8,13 +8,19 @@ exports.getAllMessage = (req, res, next) => {
 };
 
 exports.newMessage = (req, res, next) => {
+  let attachment;
+  if (req.file != undefined) {
+    attachment = `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`;
+  } else {
+    attachment == null;
+  }
   const message = Models.Message.create({
     UserId: res.locals.userId,
     title: req.body.title,
     content: req.body.content,
-    attachment: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    attachment: attachment,
   })
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));
