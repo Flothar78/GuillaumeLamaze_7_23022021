@@ -25,3 +25,9 @@ exports.newMessage = (req, res, next) => {
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));
 };
+
+exports.deleteMessage = (req, res, next) => {
+  Models.Message.destroy({ where: { id: req.query.id } }).then(() =>
+    res.status(200).json({ message: "Message supprimé " })
+  );
+};

@@ -18,8 +18,11 @@
         <div class="card-img-top w-75 mx-auto">
           <img :src="message.attachment" alt="image" />
         </div>
-        <v-card><Comment v-bind:messageId="message.id"/></v-card>
-        <v-spacer></v-spacer>
+        <v-card><Comment v-bind:messageId="message.id"/></v-card
+        ><v-spacer></v-spacer>
+        <v-card elevation="12" @click="deleteMessage()"
+          >Supprimer le message</v-card
+        >
       </v-card>
     </div>
     <v-card class="px-4">
@@ -99,6 +102,17 @@ export default {
         .then((res) => {
           this.messages.push(res.data);
           this.message = {};
+        });
+    },
+    deleteMessage() {
+      axios
+        .delete("http://localhost:3000/messages?id=" + this.message.id, {
+          headers: {
+            Authorization: "Bearer" + " " + this.$store.state.token,
+          },
+        })
+        .then((response) => {
+          response.status(401).json(response);
         });
     },
   },

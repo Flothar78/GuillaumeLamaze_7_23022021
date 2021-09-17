@@ -11,12 +11,13 @@ exports.getAllComment = (req, res, next) => {
       res.status(200).json(comment)
     );
   }
-
   const comment = Models.Comment.findAll()
     .then((comment) => {
       res.status(200).json(comment);
     })
-    .catch((error) => error.status(401).json(error));
+    .catch((error) => {
+      error.status(401).json(error);
+    });
 };
 
 exports.newComment = (req, res, next) => {
