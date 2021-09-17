@@ -22,4 +22,4 @@ const storage = multer.diskStorage({
   },
 });
 
-module.exports = multer({ storage: storage }).single("onSelectedFile");
+module.exports = multer({ storage: storage }).single("image");
