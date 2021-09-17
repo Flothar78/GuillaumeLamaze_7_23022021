@@ -12,7 +12,9 @@ exports.newMessage = (req, res, next) => {
     UserId: res.locals.userId,
     title: req.body.title,
     content: req.body.content,
-    attachment: req.body.attachment,
+    attachment: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,
   })
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));

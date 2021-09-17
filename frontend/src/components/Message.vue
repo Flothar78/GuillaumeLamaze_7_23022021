@@ -38,7 +38,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-      <v-form><input type="file" @change="onSelectedFile" /> </v-form>
+      <v-form><input type="file" @change="onSelected"/></v-form>
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -61,41 +61,36 @@ export default {
   components: { Comment },
   data() {
     return {
-      selectedFile: null,
+      file: null,
       messages: [],
       message: {},
     };
   },
+
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages", {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
-      .then((this.messages = (res) => res.data))
-      .catch((error) => error.status(401).json(error));
+      .then((this.messages = (res) => res.data));
   },
+
   methods: {
     onSelectedFile(event) {
-      this.selectedFile = event.target.files[0];
+      this.file = event.target.files[0];
     },
     newMessage() {
-      const data = {
-        file: this.selectedFile,
-        data: this.message,
-        userId: this.$store.state.userId,
-      };
+      const fd = new FormData();
+      fd.append("image", this.file);
+      fd.append("message", this.message);
       axios
-        .post("http://localhost:3000/messages", data, {
-          headers: {
-            Authorization: "Bearer" + " " + this.$store.state.token,
-          },
+        .post("http://localhost:3000/messages", fd, {
+          headers: { Authorization: "Bearer" + " " + this.$store.state.token },
         })
         .then((res) => {
           this.messages.push(res.data);
           this.message = {};
-          console.log(res);
-        })
-        .catch((error) => error.status(401).json(error));
+        });
     },
   },
 };
