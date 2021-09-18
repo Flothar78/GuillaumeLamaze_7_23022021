@@ -18,6 +18,7 @@ MySQL
 MAMP 
 
 Vue.js
+Sequelize
 
 
 
