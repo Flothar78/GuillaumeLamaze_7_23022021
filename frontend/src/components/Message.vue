@@ -14,15 +14,22 @@
         </v-card>
         <br />
         <div>{{ message.content }}</div>
-        <br />
-        <div class="card-img-top w-75 mx-auto">
+        <v-card class="card-img-top w-75 mx-auto">
           <img :src="message.attachment" alt="image" />
+        </v-card>
+        <v-spacer></v-spacer>
+        <v-card><Comment v-bind:messageId="message.id"/></v-card>
+        <v-spacer></v-spacer>
+        <div class="d-flex justify-end">
+          <v-card
+            elevation="8"
+            color="red"
+            class="mr-6 mt-3 px-3"
+            @click="deleteMessage(message.id)"
+            v-if="isAdmin || message.UserId == userId"
+            >Supprimer le message</v-card
+          >
         </div>
-        <v-card><Comment v-bind:messageId="message.id"/></v-card
-        ><v-spacer></v-spacer>
-        <v-card elevation="12" @click="deleteMessage()"
-          >Supprimer le message</v-card
-        >
       </v-card>
     </div>
     <v-card class="px-4">
@@ -43,7 +50,7 @@
           v-model="message.content"
         ></v-text-field
       ></v-form>
-      <v-form><input type="file" @change="change"/></v-form>
+      <v-form><input type="file" @change="fileChange"/></v-form>
       <small>*Merci de remplir au moins les champs avec astérique </small>
       <v-spacer></v-spacer>
       <button
@@ -60,6 +67,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 import Comment from "./Comment";
 export default {
   name: "Message",
@@ -67,7 +75,7 @@ export default {
   data() {
     return {
       image: null,
-      message: { title: null, content: null },
+      message: {},
       messages: [],
     };
   },
@@ -77,22 +85,18 @@ export default {
       .get("http://localhost:3000/messages", {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
-      .then((this.messages = (res) => res.data))
-      .catch((error) => {
-        error.status(401).json(error);
-      });
+      .then((this.messages = (res) => res.data));
   },
-
+  computed: { ...mapGetters(["isAdmin", "userId"]) },
   methods: {
-    onSelectedFile(event) {
+    fileChange(event) {
       this.image = event.target.files[0];
     },
     newMessage() {
-      const data = {
-        image: this.image,
-        message: this.message,
-        userId: this.$store.state.userId,
-      };
+      const data = new FormData();
+      data.append("title", this.message.title);
+      data.append("content", this.message.content);
+      data.append("attachment", this.image);
       axios
         .post("http://localhost:3000/messages", data, {
           headers: {
@@ -104,14 +108,18 @@ export default {
           this.message = {};
         });
     },
-    deleteMessage() {
+    deleteMessage(messageId) {
       axios
-        .delete("http://localhost:3000/messages?id=" + this.message.id, {
-          headers: {
-            Authorization: "Bearer" + " " + this.$store.state.token,
-          },
-        })
-        .then((response) => {
+        .delete(
+          "http://localhost:3000/messages/" + messageId,
+
+          {
+            headers: {
+              Authorization: "Bearer" + " " + this.$store.state.token,
+            },
+          }
+        )
+        .catch((response) => {
           response.status(401).json(response);
         });
     },

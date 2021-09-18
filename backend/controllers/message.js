@@ -16,6 +16,7 @@ exports.newMessage = (req, res, next) => {
   } else {
     attachment == null;
   }
+  console.log(req.body);
   const message = Models.Message.create({
     UserId: res.locals.userId,
     title: req.body.title,
@@ -23,11 +24,12 @@ exports.newMessage = (req, res, next) => {
     attachment: attachment,
   })
     .then((message) => res.status(201).json(message))
+
     .catch((err) => res.status(400).json(err));
 };
 
 exports.deleteMessage = (req, res, next) => {
-  Models.Message.destroy({ where: { id: req.query.id } }).then(() =>
+  Models.Message.destroy({ where: { id: req.params.id } }).then(() =>
     res.status(200).json({ message: "Message supprimé " })
   );
 };
