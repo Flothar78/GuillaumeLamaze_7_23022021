@@ -21,22 +21,18 @@ Dans le terminal, vous accéderez au dossier général Groupomania.
    
    
 
-Pour lancer la partie frontend, rendez-vous y en tapant dans le terminal:   cd frontend
-
-puis tapez dans le terminal:   run npm install pour ouvrir la page. 
+Pour lancer la partie frontend, rendez-vous y en tapant dans le terminal:   cd frontend, puis tapez dans le terminal:   run npm install pour ouvrir la page. 
 
 
 
-Pour lancer la partie backend, rendez-vous y en tapant dans le terminal:   cd backend
-
-puis tapez dans le terminal:   nodemon server.js   pour lancer le serveur
+Pour lancer la partie backend, rendez-vous y en tapant dans le terminal:   cd backend, puis tapez dans le terminal:   nodemon server.js   pour lancer le serveur
 
 
 
 
 
 
-Importez dans mySQL les bases de données du projet, en utilisant le fichier database.sql
+Importez dans mySQL les bases de données du projet, en utilisant le fichier: database.sql
 
 
 
