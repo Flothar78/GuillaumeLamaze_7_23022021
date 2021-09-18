@@ -11,9 +11,17 @@ Pour accéder au projet, vous aurez besoin de
 
 Node.js
 
+Express
+
 MySQL
 
+MAMP 
+
 Vue.js
+
+
+
+
 
 Pour installer le projet dans votre IDE, merci de cloner le repository
 
