@@ -109,6 +109,7 @@ export default {
         });
     },
     deleteMessage(messageId) {
+      console.log(messageId);
       axios
         .delete(
           "http://localhost:3000/messages/" + messageId,

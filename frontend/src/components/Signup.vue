@@ -26,6 +26,7 @@
                 label="Email*"
                 required
                 v-model="user.email"
+                :rules="emailRules"
               ></v-text-field
             ></v-form>
           </v-col>
@@ -62,7 +63,12 @@ export default {
   name: "Signup",
   data() {
     return {
-      user: {},
+      user: { email: null },
+      emailRules: [
+        (v) =>
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "Votre adresse mail n'est pas conforme",
+      ],
     };
   },
   methods: {

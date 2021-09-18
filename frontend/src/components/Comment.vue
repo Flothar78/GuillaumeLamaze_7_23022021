@@ -10,9 +10,12 @@
         v-bind:style="styleResize"
         placeholder="Ajouter un commentaire ?"
         v-model="comment"
-      ></textarea>
-      <v-spacer></v-spacer>
-      <button class="px-2 indigo lighten-4 mr-4" @click="sendComment">
+      >
+      </textarea>
+    </div>
+    <v-spacer></v-spacer>
+    <div>
+      <button class="px-2 indigo lighten-4 mx-4" @click="sendComment">
         Envoyer votre commentaire
       </button>
     </div>
@@ -21,6 +24,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "Comment",
   props: ["messageId"],
@@ -39,6 +43,7 @@ export default {
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
   },
+  computed: { ...mapGetters(["isAdmin", "userId"]) },
   methods: {
     sendComment() {
       axios
