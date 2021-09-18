@@ -9,12 +9,7 @@ Projet 7 du parcours Web d'Openclassrooms Par Guillaume Lamaze
 
 Pour accéder au projet, vous aurez besoin de   
 
-Node.js
-Express
-MySQL
-MAMP 
-Vue.js
-Sequelize
+Node.js ///    Express   ////  MySQL   /// MAMP   ///  Vue.js  ///   Sequelize
 
 
 
