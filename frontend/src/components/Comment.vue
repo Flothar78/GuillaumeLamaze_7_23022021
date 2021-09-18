@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="my-8 ml-4">
-      <div v-for="comment in comments" :key="comment.content">
-        <v-card
-          elevation="6"
-          class="d-flex justify-space-between px-2 ml-2 mr-10 mb-6 shaped"
-        >
-          {{ comment.content }}
-        </v-card>
+    <div>
+      <div class="my-8 ml-4 py-2">
+        <div v-for="comment in comments" :key="comment.content">
+          <v-card
+            elevation="6"
+            class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
+          >
+            {{ comment.content }}
+          </v-card>
+        </div>
       </div>
     </div>
     <div class="d-flex justify-space-between pr-1 ml-1 mb-1">
@@ -66,3 +68,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#orange {
+  background-color: #fd2d01;
+}
+</style>

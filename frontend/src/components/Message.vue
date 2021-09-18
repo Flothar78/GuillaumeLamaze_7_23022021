@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <div class="mb-4 ">
+  <v-container id="orange">
+    <div class="mb-4 indigo lighten-4">
       <div headline class="font-weight-medium d-flex justify-center">
         Bienvenue {{ username }} !
       </div>
@@ -9,21 +9,21 @@
       >
     </div>
     <div
-      class="d-flex flex-column-reverse"
+      class="d-flex flex-column-reverse "
       v-for="(message, i) in messages"
       :key="i"
     >
-      <v-card elevation="16" class="mx-6 mb-12"
+      <v-card elevation="16" class="mx-6 mb-12 "
         ><v-card
           elevation="6"
           class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
-          justify-space-around"
+          justify-space-around indigo lighten-4"
         >
           {{ message.title }}
         </v-card>
 
         <div class="mb-6 px-4">{{ message.content }}</div>
-        <v-card class="card-img-top w-75 mx-3 px-3 py-3">
+        <v-card class="card-img-top w-75 mx-3 px-3 py-3 ">
           <v-img
             contain
             max-height="400px"
@@ -142,3 +142,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#orange {
+  background-color: #fd2d01;
+}
+</style>

@@ -23,3 +23,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+#orange {
+  background-color: #fd2d01;
+}
+</style>

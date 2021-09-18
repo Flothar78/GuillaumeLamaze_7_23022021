@@ -1,8 +1,8 @@
 <template>
   <v-btn
-    elevation="4"
+    elevation="1"
     class="mb-8 mt-12 mx-3"
-    color="indigo lighten-2"
+    color="indigo lighten-1"
     text
     @click="deleteAccount"
   >

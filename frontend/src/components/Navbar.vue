@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-toolbar class="indigo lighten-4">
-      <p class="red--text mt-3">Groupomania</p>
+      <p class=" mt-3">Groupomania</p>
       <v-spacer></v-spacer>
       <div class="font-weight-black mr-16">
         G<span class="font-italic">roup</span>Too<span class="font-italic"
@@ -19,3 +19,9 @@ export default {
   name: "navbar",
 };
 </script>
+
+<style>
+#orange {
+  background-color: #fd2d01;
+}
+</style>

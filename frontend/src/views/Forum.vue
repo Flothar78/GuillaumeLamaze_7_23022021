@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="indigo lighten-4 v-sheet theme--light v-toolbar">
     <v-card><Message /></v-card>
 
-    <div class="d-flex">
+    <div class="d-flex justify-space-between">
       <div><Logout /></div>
       <div><DeleteAccount /></div>
     </div>

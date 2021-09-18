@@ -1,11 +1,5 @@
 <template
-  ><v-btn
-    elevation="4"
-    class="mb-8 mt-12 mx-3"
-    color="indigo lighten-2"
-    text
-    @click="logout"
-  >
+  ><v-btn elevation="4" class="mb-8 mt-12 mx-3 white" text @click="logout">
     Vous déconnecter
   </v-btn>
 </template>
