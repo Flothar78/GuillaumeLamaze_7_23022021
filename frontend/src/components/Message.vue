@@ -1,20 +1,29 @@
 <template>
   <v-container>
-    <div class="mb-4">
-      Messages des salariés de Groupomania
+    <div class="mb-4 ">
+      <div headline class="font-weight-medium d-flex justify-center">
+        Bienvenue {{ username }} !
+      </div>
+      <span class="d-flex justify-center"
+        >Consultez et répondez aux messages des salariés de Groupomania</span
+      >
     </div>
     <div
       class="d-flex flex-column-reverse"
       v-for="(message, i) in messages"
       :key="i"
     >
-      <v-card elevation="4" class="mb-4 mx-2 pl-4 py-2 "
-        ><v-card elevation="1" class="font-weight-medium d-flex justify-center">
+      <v-card elevation="16" class="mx-6 mb-12"
+        ><v-card
+          elevation="6"
+          class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
+          justify-space-around"
+        >
           {{ message.title }}
         </v-card>
-        <br />
-        <div>{{ message.content }}</div>
-        <v-card class="card-img-top w-75 mx-auto">
+
+        <div class="mb-6 px-4">{{ message.content }}</div>
+        <v-card class="card-img-top w-75 mx-3 px-3 py-3">
           <v-img
             contain
             max-height="400px"
@@ -24,13 +33,13 @@
           />
         </v-card>
         <v-spacer></v-spacer>
-        <v-card><Comment v-bind:messageId="message.id"/></v-card>
+        <v-card class="mx-3"><Comment v-bind:messageId="message.id"/></v-card>
         <v-spacer></v-spacer>
         <div class="d-flex justify-end">
           <v-card
             elevation="8"
             color="red"
-            class="mr-6 mt-3 px-3"
+            class="mr-6 my-3 px-3"
             @click="deleteMessage(message.id)"
             v-if="isAdmin || message.UserId == userId"
             >Supprimer le message</v-card
@@ -91,10 +100,9 @@ export default {
       .get("http://localhost:3000/messages", {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
-      .then((this.messages = (res) => res.data))
-      .catch((res) => res.status(402).json(res));
+      .then((this.messages = (res) => res.data));
   },
-  computed: { ...mapGetters(["isAdmin", "userId"]) },
+  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
   methods: {
     fileChange(event) {
       this.image = event.target.files[0];

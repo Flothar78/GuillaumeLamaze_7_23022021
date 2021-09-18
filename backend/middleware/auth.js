@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
       next();
     }
   } catch {
-    res.status(405).json({
+    res.status(406).json({
       error: new Error("Invalid request!"),
     });
   }

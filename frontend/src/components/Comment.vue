@@ -1,23 +1,27 @@
 <template>
   <div>
-    <div class="commentsRender">
+    <div class="my-8 ml-4">
       <div v-for="comment in comments" :key="comment.content">
-        <span>{{ comment.content }}</span>
+        <v-card
+          elevation="6"
+          class="d-flex justify-space-between px-2 ml-2 mr-10 mb-6 shaped"
+        >
+          {{ comment.content }}
+        </v-card>
       </div>
     </div>
-    <div class="d-flex">
-      <textarea
+    <div class="d-flex justify-space-between pr-1 ml-1 mb-1">
+      <input
+        class="pr-1 ml-1 mb-1"
         v-bind:style="styleResize"
         placeholder="Ajouter un commentaire ?"
         v-model="comment"
-      >
-      </textarea>
-    </div>
-    <v-spacer></v-spacer>
-    <div>
-      <button class="px-2 indigo lighten-4 mx-4" @click="sendComment">
-        Envoyer votre commentaire
-      </button>
+      />
+      <div>
+        <button class="px-2 indigo lighten-4 mr-1 mb-1" @click="sendComment">
+          Envoyer votre commentaire
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -43,7 +47,7 @@ export default {
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
   },
-  computed: { ...mapGetters(["isAdmin", "userId"]) },
+  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
   methods: {
     sendComment() {
       axios
