@@ -15,7 +15,13 @@
         <br />
         <div>{{ message.content }}</div>
         <v-card class="card-img-top w-75 mx-auto">
-          <img :src="message.attachment" alt="image" />
+          <v-img
+            contain
+            max-height="400px"
+            :cover="true"
+            :src="message.attachment"
+            alt="image"
+          />
         </v-card>
         <v-spacer></v-spacer>
         <v-card><Comment v-bind:messageId="message.id"/></v-card>
@@ -85,7 +91,8 @@ export default {
       .get("http://localhost:3000/messages", {
         headers: { Authorization: "Bearer" + " " + this.$store.state.token },
       })
-      .then((this.messages = (res) => res.data));
+      .then((this.messages = (res) => res.data))
+      .catch((res) => res.status(402).json(res));
   },
   computed: { ...mapGetters(["isAdmin", "userId"]) },
   methods: {

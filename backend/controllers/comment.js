@@ -15,7 +15,7 @@ exports.getAllComment = (req, res, next) => {
     .then((comment) => {
       res.status(200).json(comment);
     })
-    .catch((res) => res.status(401).json(res));
+    .catch(() => res.status(401).json());
 };
 
 exports.newComment = (req, res, next) => {

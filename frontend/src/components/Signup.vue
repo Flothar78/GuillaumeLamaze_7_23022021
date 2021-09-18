@@ -17,6 +17,7 @@
                 persistent-hint
                 required
                 v-model="user.nom"
+                :rules="usernameRules"
               ></v-text-field
             ></v-form>
           </v-col>
@@ -37,6 +38,7 @@
                 type="password"
                 required
                 v-model="user.password"
+                :rules="passwordRules"
               ></v-text-field
             ></v-form>
           </v-col>
@@ -63,11 +65,21 @@ export default {
   name: "Signup",
   data() {
     return {
-      user: { email: null },
+      user: { username: null, email: null, password: null },
+      usernameRules: [
+        (v) =>
+          /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/.test(v) ||
+          "Votre nom d'utilisateur n'est pas conforme",
+      ],
       emailRules: [
         (v) =>
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "Votre adresse mail n'est pas conforme",
+      ],
+      passwordRules: [
+        (v) =>
+          /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/.test(v) ||
+          "Votre mot de passe n'est pas conforme",
       ],
     };
   },
