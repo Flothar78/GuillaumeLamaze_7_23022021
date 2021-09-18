@@ -4,31 +4,34 @@ Projet 7 du parcours Web d'Openclassrooms Par Guillaume Lamaze
 
 
 
-Pour accéder au projet, vous aurez besoin de
+
+
+
+Pour accéder au projet, vous aurez besoin de   
 
 Node.js
+
 MySQL
-MAMP
-PHPmyadmin
+
 Vue.js
 
 Pour installer le projet dans votre IDE, merci de cloner le repository
 
 
 
-Dans le terminal, vous accéderez au dossier général Groupomia.
+Dans le terminal, vous accéderez au dossier général Groupomania.
    
    
 
 Pour lancer la partie frontend, rendez-vous y en tapantdans le terminal:   cd frontend
 
-puis tapez dans le terminal:   nun npm install
+puis tapez dans le terminal:   run npm install pour ouvrir la page. 
 
 
 
-Pour lancer la partie backend, rendez-vous y en tapantdans le terminal:   cd backend
+Pour lancer la partie backend, rendez-vous y en tapant dans le terminal:   cd backend
 
-puis tapez dans le terminal:   nodemon server.js
+puis tapez dans le terminal:   nodemon server.js   pour langer le serveur
 
 
 
@@ -46,4 +49,4 @@ Contenu du fichier .env
 
 DB_HOST=localhost
 DB_USER=root
-DB_PASS=
+DB_PASS=root
