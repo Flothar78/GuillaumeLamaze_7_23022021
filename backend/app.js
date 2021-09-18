@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const auth = require("./middleware/auth");
 const multer = require("./middleware/multer");
-
+const env = require("dotenv").config();
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
 const commentRoutes = require("./routes/comment");

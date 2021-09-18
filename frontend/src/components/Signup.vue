@@ -69,17 +69,17 @@ export default {
       usernameRules: [
         (v) =>
           /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/.test(v) ||
-          "Votre nom d'utilisateur n'est pas conforme",
+          "Chiffres et lettres uniquement, sans espace",
       ],
       emailRules: [
         (v) =>
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "Votre adresse mail n'est pas conforme",
+          " Un @ au milieu, une extension (par ex .com) à la fin ",
       ],
       passwordRules: [
         (v) =>
           /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/.test(v) ||
-          "Votre mot de passe n'est pas conforme",
+          " Au moins 8 caractères, dont une majuscule, un chiffre et un caractère spécial",
       ],
     };
   },
