@@ -31,7 +31,7 @@ Dans le terminal, vous accéderez au dossier général Groupomania.
    
    
 
-Pour lancer la partie frontend, rendez-vous y en tapantdans le terminal:   cd frontend
+Pour lancer la partie frontend, rendez-vous y en tapant dans le terminal:   cd frontend
 
 puis tapez dans le terminal:   run npm install pour ouvrir la page. 
 
@@ -39,7 +39,7 @@ puis tapez dans le terminal:   run npm install pour ouvrir la page.
 
 Pour lancer la partie backend, rendez-vous y en tapant dans le terminal:   cd backend
 
-puis tapez dans le terminal:   nodemon server.js   pour langer le serveur
+puis tapez dans le terminal:   nodemon server.js   pour lancer le serveur
 
 
 
