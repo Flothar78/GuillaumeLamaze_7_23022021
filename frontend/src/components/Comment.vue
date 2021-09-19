@@ -63,7 +63,10 @@ export default {
             },
           }
         )
-        .then((comment) => this.comments.unshift(comment.data))
+        .then((comment) => {
+          this.comments.unshift(comment.data);
+          this.comment = "";
+        })
         .catch((error) => error.status(401).json(error));
     },
   },

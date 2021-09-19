@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Models = require("../models/index");
 const user = require("../models/user");
-
+////// Creation de utilisateur //////
 exports.signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -19,6 +19,7 @@ exports.signup = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+//// Connexion utilisateur //////
 exports.login = (req, res, next) => {
   console.log(req.body);
   Models.User.findOne({ where: { email: req.body.email } })
@@ -40,9 +41,13 @@ exports.login = (req, res, next) => {
             email: user.email,
             username: user.userName,
 
-            token: jwt.sign({ userId: user.id }, "RANDOM_TOKEN_SECRET", {
-              expiresIn: "24h",
-            }),
+            token: jwt.sign(
+              { userId: user.id, isAdmin: user.isAdmin },
+              "RANDOM_TOKEN_SECRET",
+              {
+                expiresIn: "24h",
+              }
+            ),
           });
         })
         .catch((error) => res.status(501).json({ error }));

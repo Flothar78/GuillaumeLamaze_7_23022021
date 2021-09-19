@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Association des Messages à l'itilisateur
       models.Message.belongsTo(models.User, {
         foreignKey: {
           allowNull: false,
         },
-        onDelete: "cascade",
+        onDelete: "cascade", /// cascade pour suppression automatique quand suppression de user /////
       });
     }
   }

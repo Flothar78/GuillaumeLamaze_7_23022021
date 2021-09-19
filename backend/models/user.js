@@ -9,9 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      //// Association des utilisateurs aux messages qu'ils postent
       models.User.hasMany(models.Message);
     }
-  }
+  } /// Modèle de données pour l'enregistrement dans la db
   User.init(
     {
       userName: { type: DataTypes.STRING, allowNull: false, unique: true },

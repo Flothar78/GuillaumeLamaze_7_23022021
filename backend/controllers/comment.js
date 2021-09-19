@@ -1,5 +1,6 @@
 const Models = require("../models/index");
 
+//// récupération des commentaires pour leur affichage ///
 exports.getAllComment = (req, res, next) => {
   let id = req.query.messageId;
   if (id) {
@@ -18,7 +19,9 @@ exports.getAllComment = (req, res, next) => {
     .catch(() => res.status(401).json());
 };
 
+/// middleware pour création de message ////
 exports.newComment = (req, res, next) => {
+  /// création selon modèles sequelize ///
   const comment = Models.Comment.create({
     UserId: res.locals.userId,
     MessageId: req.body.messageId,

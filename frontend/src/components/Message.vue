@@ -19,7 +19,7 @@
           class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
           justify-space-around indigo lighten-4"
         >
-          {{ message.title }}
+          {{ message.title }} {{ message.User.userName }}
         </v-card>
 
         <div class="mb-6 px-4">{{ message.content }}</div>
@@ -40,7 +40,7 @@
             elevation="8"
             color="red"
             class="mr-6 my-3 px-3"
-            @click="deleteMessage(message.id)"
+            @click="deleteMessage(message.id, i)"
             v-if="isAdmin || message.UserId == userId"
             >Supprimer le message</v-card
           >
@@ -127,16 +127,13 @@ export default {
         .catch((res) => res.status(401).json(res));
     },
 
-    deleteMessage(messageId) {
-      console.log(messageId);
-      const index = this.messages.indexOf(messageId);
-
+    deleteMessage(messageId, index) {
       console.log(this.messages);
       console.log(index);
       this.messages.splice(index, 1);
       axios.delete("http://localhost:3000/messages/" + messageId, {
         headers: {
-          Authorization: "Bearer" + " " + this.$store.state.token,
+          Authorization: "Bearer " + this.$store.state.token,
         },
       });
     },
