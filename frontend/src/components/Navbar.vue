@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style>
-#orange {
-  background-color: #fd2d01;
+#blue {
+  background-color: #d7d7ff;
 }
 </style>

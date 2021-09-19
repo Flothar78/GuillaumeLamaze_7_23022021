@@ -12,7 +12,7 @@
               @click="deleteComment(comment.id, i)"
               v-if="isAdmin || comment.UserId == userId"
             >
-              Supprimer le commentaire
+              <small>Supprimer</small>
             </button>
           </v-card>
         </div>
@@ -86,9 +86,3 @@ export default {
   },
 };
 </script>
-
-<style>
-#orange {
-  background-color: #fd2d01;
-}
-</style>

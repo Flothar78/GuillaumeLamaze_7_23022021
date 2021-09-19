@@ -1,7 +1,7 @@
 <template>
-  <v-container id="orange">
-    <div class="mb-4 indigo lighten-4">
-      <div headline class="font-weight-medium d-flex justify-center">
+  <v-container id="orangeLight">
+    <div class="mb-4">
+      <div headline class="font-weight-medium d-flex justify-center ">
         Bienvenue {{ username }} !
       </div>
       <span class="d-flex justify-center"
@@ -17,7 +17,8 @@
         ><v-card
           elevation="6"
           class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
-          justify-space-around indigo lighten-4"
+          justify-space-around"
+          id="orangeStrong"
         >
           {{ message.title }}
         </v-card>
@@ -124,8 +125,6 @@ export default {
         .catch((res) => res.status(401).json(res));
     },
     deleteMessage(messageId, index) {
-      console.log(this.messages);
-      console.log(index);
       this.messages.splice(index, 1);
       axios.delete("http://localhost:3000/messages/" + messageId, {
         headers: {
@@ -138,7 +137,15 @@ export default {
 </script>
 
 <style>
-#orange {
+#orangeLight {
+  background-color: #ffd7d7;
+}
+
+#orangeStrong {
   background-color: #fd2d01;
+}
+
+#blue {
+  background-color: #d7ffff;
 }
 </style>
