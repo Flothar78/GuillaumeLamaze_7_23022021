@@ -2,12 +2,18 @@
   <div>
     <div>
       <div class="my-8 ml-4 py-2">
-        <div v-for="comment in comments" :key="comment.content">
+        <div v-for="(comment, i) in comments" :key="i">
           <v-card
             elevation="6"
             class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
           >
             {{ comment.content }}
+            <button
+              @click="deleteComment(comment.id, i)"
+              v-if="isAdmin || comment.UserId == userId"
+            >
+              Supprimer le commentaire
+            </button>
           </v-card>
         </div>
       </div>
@@ -43,6 +49,7 @@ export default {
       },
     };
   },
+  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
   emits: ["comment"],
   async created() {
     this.comments = await axios
@@ -50,7 +57,6 @@ export default {
       .then((this.comments = (res) => res.data));
   },
 
-  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
   methods: {
     sendComment() {
       axios
@@ -68,6 +74,14 @@ export default {
           this.comment = "";
         })
         .catch((error) => error.status(401).json(error));
+    },
+    deleteComment(commentId, index) {
+      this.comments.splice(index, 1);
+      axios.delete("http://localhost:3000/comments/" + commentId, {
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+        },
+      });
     },
   },
 };

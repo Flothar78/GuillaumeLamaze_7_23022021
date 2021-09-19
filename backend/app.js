@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const cors = require("cors");
-const auth = require("./middleware/auth");
-const multer = require("./middleware/multer");
 const env = require("dotenv").config();
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
@@ -45,7 +43,7 @@ app.use(function (req, res, next) {
 });
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/users", userRoutes);
-app.use("/messages", multer, messageRoutes);
+app.use("/messages", messageRoutes);
 app.use("/comments", commentRoutes);
 
 module.exports = app;

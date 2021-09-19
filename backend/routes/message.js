@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const multer = require("../middleware/multer");
 const messageControllers = require("../controllers/message");
 
-router.get("/", auth, messageControllers.getAllMessage);
-router.post("/", auth, messageControllers.newMessage);
-router.delete("/:id", auth, messageControllers.deleteMessage);
+router.get("/", auth, multer, messageControllers.getAllMessage);
+router.post("/", auth, multer, messageControllers.newMessage);
+router.delete("/:id", auth, multer, messageControllers.deleteMessage);
 
 module.exports = router;

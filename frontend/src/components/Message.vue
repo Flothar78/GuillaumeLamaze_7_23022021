@@ -19,7 +19,7 @@
           class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
           justify-space-around indigo lighten-4"
         >
-          {{ message.title }} {{ message.User.userName }}
+          {{ message.title }}
         </v-card>
 
         <div class="mb-6 px-4">{{ message.content }}</div>
@@ -94,9 +94,7 @@ export default {
       messages: [],
     };
   },
-
   computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
-
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages", {
@@ -104,7 +102,6 @@ export default {
       })
       .then((this.messages = (res) => res.data));
   },
-
   methods: {
     fileChange(event) {
       this.image = event.target.files[0];
@@ -126,7 +123,6 @@ export default {
         })
         .catch((res) => res.status(401).json(res));
     },
-
     deleteMessage(messageId, index) {
       console.log(this.messages);
       console.log(index);
