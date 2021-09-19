@@ -47,7 +47,7 @@ export default {
   async created() {
     this.comments = await axios
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
-      .then((this.comments.unshift = (res) => res.data));
+      .then((this.comments = (res) => res.data));
   },
 
   computed: { ...mapGetters(["isAdmin", "userId", "username"]) },

@@ -126,21 +126,19 @@ export default {
         })
         .catch((res) => res.status(401).json(res));
     },
+
     deleteMessage(messageId) {
       console.log(messageId);
-      axios
-        .delete(
-          "http://localhost:3000/messages/" + messageId,
+      const index = this.messages.indexOf(messageId);
 
-          {
-            headers: {
-              Authorization: "Bearer" + " " + this.$store.state.token,
-            },
-          }
-        )
-        .catch((response) => {
-          response.status(401).json(response);
-        });
+      console.log(this.messages);
+      console.log(index);
+      this.messages.splice(index, 1);
+      axios.delete("http://localhost:3000/messages/" + messageId, {
+        headers: {
+          Authorization: "Bearer" + " " + this.$store.state.token,
+        },
+      });
     },
   },
 };
