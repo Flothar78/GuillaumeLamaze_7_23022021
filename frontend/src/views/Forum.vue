@@ -1,5 +1,5 @@
 <template>
-  <div class="indigo lighten-4 v-sheet theme--light v-toolbar">
+  <div class="indigo lighten-4  v-sheet theme--light v-toolbar">
     <v-card><Message /></v-card>
 
     <div class="d-flex justify-space-between">

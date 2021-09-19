@@ -13,7 +13,7 @@
       v-for="(message, i) in messages"
       :key="i"
     >
-      <v-card elevation="16" class="mx-6 mb-12 "
+      <v-card elevation="18" class="mx-6 mb-12 "
         ><v-card
           elevation="6"
           class="mb-12 mx-16 pr-2 mt-6 pl-4 py-2 font-weight-medium d-flex
@@ -95,6 +95,8 @@ export default {
     };
   },
 
+  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
+
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages", {
@@ -102,7 +104,7 @@ export default {
       })
       .then((this.messages = (res) => res.data));
   },
-  computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
+
   methods: {
     fileChange(event) {
       this.image = event.target.files[0];
@@ -119,9 +121,10 @@ export default {
           },
         })
         .then((res) => {
-          this.messages.push(res.data);
+          this.messages.unshift(res.data);
           this.message = {};
-        });
+        })
+        .catch((res) => res.status(401).json(res));
     },
     deleteMessage(messageId) {
       console.log(messageId);
