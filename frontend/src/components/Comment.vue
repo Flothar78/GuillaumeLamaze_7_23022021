@@ -7,7 +7,7 @@
             elevation="6"
             class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
           >
-            {{ comment.content }}
+            {{ comment.content }} <small>par {{ comment.User.userName }}</small>
 
             <button
               @click="deleteComment(comment.id, i)"
@@ -75,7 +75,8 @@ export default {
           }
         )
         .then((comment) => {
-          this.comments.unshift(comment.data);
+          comment.data.User = { userName: this.username };
+          this.comments.push(comment.data);
           this.comment = "";
         })
         .catch((error) => error.status(401).json(error));
