@@ -7,7 +7,7 @@
             elevation="6"
             class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
           >
-            {{ comment.content }}
+            {{ comment.content }} <small>par {{ comment.User.userName }}</small>
 
             <button
               @click="deleteComment(comment.id, i)"

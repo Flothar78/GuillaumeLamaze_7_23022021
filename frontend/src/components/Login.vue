@@ -43,7 +43,6 @@
           >
         </v-card>
       </v-row>
-
       <v-btn
         elevation="4"
         class="mb-8 mt-6 mx-3"
@@ -66,7 +65,6 @@ export default {
       user: {},
     };
   },
-
   methods: {
     login() {
       axios

@@ -27,7 +27,7 @@ exports.newMessage = (req, res, next) => {
   } else {
     attachment == null;
   }
-  console.log(req.body);
+
   const message = Models.Message.create({
     UserId: res.locals.userId,
     title: req.body.title,

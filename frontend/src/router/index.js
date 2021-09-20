@@ -5,6 +5,18 @@ import Accueil from "../views/Accueil.vue";
 
 Vue.use(VueRouter);
 ////// routes de chacune des views //////
+
+function guardMyroute(to, from, next) {
+  var isAuthenticated = false;
+
+  if (this.$store.state.token !== null) isAuthenticated = true;
+  else isAuthenticated = false;
+  if (isAuthenticated) {
+    next();
+  } else {
+    next("/Accueil"); // go to '/login';
+  }
+}
 const routes = [
   {
     path: "/",
@@ -14,6 +26,7 @@ const routes = [
   {
     path: "/forum",
     name: "Forum",
+    beforeEnter: guardMyroute,
     component: Forum,
   },
 ];

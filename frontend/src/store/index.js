@@ -11,7 +11,7 @@ export default new Vuex.Store({
     email: "",
     isAdmin: false,
   },
-  ////// Précision sur ce que deviennent ses données quand acrions ou getters déclenchées /////
+  ////// Précision sur ce que deviennent ses données quand actions ou getters déclenchées /////
   mutations: {
     LOGIN_SUCCESS(state, response) {
       (state.token = response.token),
