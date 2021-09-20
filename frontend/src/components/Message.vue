@@ -140,11 +140,9 @@ export default {
 #orangeLight {
   background-color: #ffd7d7;
 }
-
 #orangeStrong {
   background-color: #fd2d01;
 }
-
 #blue {
   background-color: #d7ffff;
 }

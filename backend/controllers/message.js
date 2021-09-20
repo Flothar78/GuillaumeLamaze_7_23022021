@@ -37,7 +37,7 @@ exports.newMessage = (req, res, next) => {
     .then((message) => res.status(201).json(message))
     .catch((err) => res.status(400).json(err));
 };
-/// Suppression de message dans base de données selon id récupérer via URL ///
+/// Suppression de message dans base de données selon id récupéré via URL ///
 exports.deleteMessage = (req, res, next) => {
   let options = { where: { id: req.params.id } };
   if (!res.locals.isAdmin) {

@@ -56,7 +56,6 @@ export default {
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
   },
-
   methods: {
     sendComment() {
       axios
