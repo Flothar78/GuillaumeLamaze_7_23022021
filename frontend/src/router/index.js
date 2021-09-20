@@ -4,7 +4,7 @@ import Forum from "../views/Forum.vue";
 import Accueil from "../views/Accueil.vue";
 
 Vue.use(VueRouter);
-
+////// routes de chacune des views //////
 const routes = [
   {
     path: "/",

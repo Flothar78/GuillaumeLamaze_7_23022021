@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Association des Messages à l'itilisateur
+      // Association des Messages à l'utilisateur
       models.Message.belongsTo(models.User, {
         foreignKey: {
           allowNull: false,

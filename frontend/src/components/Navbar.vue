@@ -19,9 +19,3 @@ export default {
   name: "navbar",
 };
 </script>
-
-<style>
-#blue {
-  background-color: #d7d7ff;
-}
-</style>

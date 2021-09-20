@@ -10,6 +10,7 @@ export default {
 
   methods: {
     logout() {
+      ////// suppression token du vue x store == plsu de userId ==>  redirection page d'accueil == Déconnexion //////
       this.$store.commit("LOGOUT_SUCCESS", this.$store.token);
       this.$router.push("/");
       this.$alert(

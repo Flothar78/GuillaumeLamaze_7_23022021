@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-
+////// Etat par défaut des données concernées //////
 export default new Vuex.Store({
   state: {
     token: "",
@@ -11,7 +11,7 @@ export default new Vuex.Store({
     email: "",
     isAdmin: false,
   },
-
+  ////// Précision sur ce que deviennent ses données quand acrions ou getters déclenchées /////
   mutations: {
     LOGIN_SUCCESS(state, response) {
       (state.token = response.token),
@@ -28,6 +28,7 @@ export default new Vuex.Store({
         (state.isAdmin = false);
     },
   },
+  ////// Chaque valeur mutée sera bien le couveau state du store //////
   getters: {
     token: (state) => state.token,
     username: (state) => state.username,

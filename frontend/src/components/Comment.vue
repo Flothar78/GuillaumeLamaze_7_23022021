@@ -8,6 +8,7 @@
             class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
           >
             {{ comment.content }}
+
             <button
               @click="deleteComment(comment.id, i)"
               v-if="isAdmin || comment.UserId == userId"
@@ -39,7 +40,9 @@ import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
   name: "Comment",
+  ////// Importation de la propriété messageId depuis le composant parent (message.vue) ///////
   props: ["messageId"],
+  ////// Déclaration de données à utiliser dans ce composant //////
   data() {
     return {
       comments: [],
@@ -49,8 +52,11 @@ export default {
       },
     };
   },
+  ////// importation de données depuis Vue X store //////
   computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
+
   emits: ["comment"],
+
   async created() {
     this.comments = await axios
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
@@ -75,6 +81,7 @@ export default {
         .catch((error) => error.status(401).json(error));
     },
     deleteComment(commentId, index) {
+      ////// suppression de l'item dans le array de comment //////
       this.comments.splice(index, 1);
       axios.delete("http://localhost:3000/comments/" + commentId, {
         headers: {

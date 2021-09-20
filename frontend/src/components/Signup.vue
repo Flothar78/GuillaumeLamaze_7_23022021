@@ -64,6 +64,7 @@ import axios from "axios";
 export default {
   name: "Signup",
   data() {
+    ////// Utilisation de REGEX pour tous les champs du formulaire //////
     return {
       user: { username: null, email: null, password: null },
       usernameRules: [

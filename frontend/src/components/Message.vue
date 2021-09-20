@@ -8,6 +8,7 @@
         >Consultez et répondez aux messages des salariés de Groupomania</span
       >
     </div>
+
     <div
       class="d-flex flex-column-reverse "
       v-for="(message, i) in messages"
@@ -96,6 +97,7 @@ export default {
     };
   },
   computed: { ...mapGetters(["isAdmin", "userId", "username"]) },
+
   async created() {
     this.messages = await axios
       .get("http://localhost:3000/messages", {
@@ -104,11 +106,14 @@ export default {
       .then((this.messages = (res) => res.data));
   },
   methods: {
+    ////// Récupération de image sélectionner dans template ///////
     fileChange(event) {
       this.image = event.target.files[0];
     },
+    ////// Formdata pour envoi de message avec fichier //////
     newMessage() {
       const data = new FormData();
+      ////// Intégration du message et de l'image //////
       data.append("title", this.message.title);
       data.append("content", this.message.content);
       data.append("attachment", this.image);
