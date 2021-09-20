@@ -41,7 +41,7 @@ exports.newMessage = (req, res, next) => {
 exports.deleteMessage = (req, res, next) => {
   let options = { where: { id: req.params.id } };
   if (!res.locals.isAdmin) {
-    options.where.userId = res.locals.id;
+    options.where.userId = res.locals.userId;
   }
   Models.Message.destroy(options)
     .then(() => res.status(200).json({ message: "Message supprimé " }))

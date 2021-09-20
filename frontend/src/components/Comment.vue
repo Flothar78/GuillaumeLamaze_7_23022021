@@ -7,7 +7,7 @@
             elevation="6"
             class="d-flex justify-space-between px-2 ml-6 mr-16 mb-4 mt-6 shaped"
           >
-            {{ comment.content }} <small>par {{ comment.User.userName }}</small>
+            {{ comment.content }}
 
             <button
               @click="deleteComment(comment.id, i)"
@@ -57,10 +57,17 @@ export default {
 
   emits: ["comment"],
 
-  async created() {
+  async mounted() {
     this.comments = await axios
       .get("http://localhost:3000/comments?messageId=" + this.messageId)
       .then((this.comments = (res) => res.data));
+  },
+  watch: {
+    messageId: async function(newId) {
+      this.comments = await axios
+        .get("http://localhost:3000/comments?messageId=" + newId)
+        .then((this.comments = (res) => res.data));
+    },
   },
   methods: {
     sendComment() {

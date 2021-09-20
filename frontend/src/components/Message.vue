@@ -21,7 +21,7 @@
           justify-space-around"
           id="orangeStrong"
         >
-          {{ message.title }} <small>{{ message.User.userName }}</small>
+          {{ message.title }}
         </v-card>
 
         <div class="mb-6 px-4">{{ message.content }}</div>

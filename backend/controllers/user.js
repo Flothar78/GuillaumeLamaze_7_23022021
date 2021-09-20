@@ -21,7 +21,6 @@ exports.signup = (req, res, next) => {
 
 //// Connexion utilisateur //////
 exports.login = (req, res, next) => {
-  console.log(req.body);
   Models.User.findOne({ where: { email: req.body.email } })
     .then((user) => {
       if (!user) {
@@ -64,8 +63,7 @@ exports.deleteAccount = (req, res, next) => {
 exports.getAll = (req, res, next) => {
   Models.User.findAll()
     .then((users) => {
-      console.log(users);
       res.sendStatus(200);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(401).json(err));
 };
