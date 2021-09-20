@@ -14,7 +14,7 @@ function guardMyroute(to, from, next) {
   if (isAuthenticated) {
     next();
   } else {
-    next("/Accueil"); // go to '/login';
+    next("/Accueil");
   }
 }
 const routes = [
