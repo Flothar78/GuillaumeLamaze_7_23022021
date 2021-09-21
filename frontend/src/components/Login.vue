@@ -65,6 +65,7 @@ export default {
       user: {},
     };
   },
+
   methods: {
     login() {
       axios
